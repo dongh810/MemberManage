@@ -62,11 +62,11 @@ public class MemberService {
         System.out.println("회원 탈퇴에 실패하였습니다.");
     }
 
-    public String getId() {
+    public String inputId() {
         return mr.inputId();
     }
 
-    public String getPwd() {
+    public String inputPwd() {
         return mr.inputPwd();
     }
 }

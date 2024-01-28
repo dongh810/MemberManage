@@ -58,11 +58,11 @@ public class Application {
         Scanner sc = new Scanner(System.in);
 //        System.out.print("아이디를 입력하세요: ");
 //        String id = sc.nextLine();
-        String id = mm.getId();
+        String id = mm.inputId();
 
 //        System.out.print("패스워드를 입력하세요: ");
 //        String pwd = sc.nextLine();
-        String pwd = mm.getPwd();
+        String pwd = mm.inputPwd();
 
         System.out.print("이름을 입력하세요: ");
         String name = sc.nextLine();
