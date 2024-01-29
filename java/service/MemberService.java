@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 public class MemberService {
     private final MemberRepository mr = new MemberRepository();
+    Member mb = new Member();
 
     public MemberService() {
     }
@@ -62,11 +63,90 @@ public class MemberService {
         System.out.println("회원 탈퇴에 실패하였습니다.");
     }
 
-    public String inputId() {
-        return mr.inputId();
-    }
+//    public String inputId() {
+//        boolean valiId = false;
+//        String id;
+//        while(true) {
+//            System.out.print("아이디를 입력해주세요: ");
+//            Scanner sc = new Scanner(System.in);
+//            id = sc.nextLine();
+//            valiId = mb.checkID(id);
+//            if(valiId) {
+//                break;
+//            }
+//        }
+//        return id;
+//    }
+//
+//    public String inputPwd() {
+//        boolean valiPwd;
+//        String pwd;
+//        while(true) {
+//            System.out.print("비밀번호를 입력해주세요: ");
+//            Scanner sc = new Scanner(System.in);
+//            pwd = sc.nextLine();
+//            valiPwd = mb.checkPwd(pwd);
+//            if(valiPwd) {
+//                break;
+//            }
+//        }
+//        return pwd;
+//    }
+//
+//    public String inputPhoneNum() {
+//        String phoneNum;
+//        boolean valiPhoneNum;
+//        while(true) {
+//            System.out.print("전화번호를 입력해주세요: ");
+//            Scanner sc = new Scanner(System.in);
+//            phoneNum = sc.nextLine();
+//            valiPhoneNum = mb.checkPwd(phoneNum);
+//            if(valiPhoneNum) {
+//                break;
+//            }
+//        }
+//        return phoneNum;
+//    }
+//
+//    public String inputPersonNum() {
+//        String personNum;
+//        boolean valiPersonNum;
+//        while(true) {
+//            System.out.print("주민번호를 입력해주세요: ");
+//            Scanner sc = new Scanner(System.in);
+//            personNum = sc.nextLine();
+//            valiPersonNum = mb.checkPwd(personNum);
+//            if(valiPersonNum) {
+//                break;
+//            }
+//        }
+//        return personNum;
+//    }
+//
+//    public String inputEmail() {
+//        String email;
+//        boolean valiEmail;
+//        while(true) {
+//            System.out.print("이메일을 입력해주세요: ");
+//            Scanner sc = new Scanner(System.in);
+//            email = sc.nextLine();
+//            valiEmail = mb.checkPwd(email);
+//            if(valiEmail) {
+//                break;
+//            }
+//        }
+//        return email;
+//    }
 
-    public String inputPwd() {
-        return mr.inputPwd();
+    public boolean validationThings(Member member) {
+        boolean valiId = mb.checkID(member.getId());
+        boolean valiPwd =  mb.checkPwd(member.getPwd());
+        boolean valiPhoneNum =  mb.checkPhoneNum(member.getPhoneNum());
+        boolean valiPersonNum =  mb.checkPersonNum(member.getPersonNum());
+        boolean valiEmail =  mb.checkEmail(member.getEmail());
+
+        if( valiEmail && valiPwd && valiId && valiPersonNum && valiPhoneNum ) {
+            return true;
+        } else return false;
     }
 }

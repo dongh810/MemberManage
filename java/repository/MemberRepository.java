@@ -18,7 +18,7 @@ public class MemberRepository {
     public MemberRepository() {
 
         /* 설명. 회원가입 기능 추가 후 이제는 파일이 기존에 존재하면(처음이 아니므로) 회원 3명으로 초기화 하기를 하지 않는다. */
-        File file = new File("src/main/java/db/memberDB.dat");
+        File file = new File("java/db/memberDB.dat");
         if(!file.exists()) {
             ArrayList<Member> members = new ArrayList<>();
             members.add(new Member(1, "user01", "pass01", "홍길동", "010-1234-1234", "abcd@naver.com", "999999-1234567",20,
@@ -44,7 +44,7 @@ public class MemberRepository {
         try {
             oos = new ObjectOutputStream(
                     new BufferedOutputStream(
-                            new FileOutputStream("src/main/java/db/memberDB.dat")));
+                            new FileOutputStream("java/db/memberDB.dat")));
 
             /* 설명. 넘어온 회원 수만큼 객체 출력하기 */
             for(Member m: members) {
@@ -69,7 +69,7 @@ public class MemberRepository {
         try {
             ois = new ObjectInputStream(
                     new BufferedInputStream(
-                            new FileInputStream("src/main/java/db/memberDB.dat")));
+                            new FileInputStream("java/db/memberDB.dat")));
 
             /* 설명. 파일로부터 모든 회원 정보를 읽어 memberList에 추가(add) */
             while(true) {
@@ -116,7 +116,7 @@ public class MemberRepository {
         try {
             moo = new MyObjectOutput(
                     new BufferedOutputStream(
-                            new FileOutputStream("src/main/java/db/memberDB.dat", true)));
+                            new FileOutputStream("java/db/memberDB.dat", true)));
 
             /* 설명. 파일로 객체 하나 출력하기 */
             moo.writeObject(member);
@@ -150,47 +150,23 @@ public class MemberRepository {
         return 0;
     }
 
-    public void checkPwd(String pwd) throws Exception{
-        String pwdPattern = "^[a-zA-Z0-9!~@#$%^&*]+$";
-        if(Pattern.matches(pwdPattern,pwd)) {
-            System.out.println("올바른 비밀번호 형식입니다.");
-        } else {
-            throw new Exception("비밀번호 형식이 잘못되었습니다.\n비밀번호는 영어 소/대문자와 숫자,특수기호(~,!,@,#,$,%,^,&,*)만 입력가능합니다.");
-        }
-    }
+//    public void checkPwd(String pwd) throws Exception{
+//        String pwdPattern = "^[a-zA-Z0-9!~@#$%^&*]+$";
+//        if(Pattern.matches(pwdPattern,pwd)) {
+//            System.out.println("올바른 비밀번호 형식입니다.");
+//        } else {
+//            throw new Exception("비밀번호 형식이 잘못되었습니다.\n비밀번호는 영어 소/대문자와 숫자,특수기호(~,!,@,#,$,%,^,&,*)만 입력가능합니다.");
+//        }
+//    }
+//
+//    public void checkID(String id) throws Exception{
+//        String idPattern = "^[a-z0-9]+$";
+//        if(Pattern.matches(idPattern,id)) {
+//            System.out.println("올바른 아이디 형식입니다.");
+//        } else {
+//            throw new Exception("아이디 형식이 잘못되었습니다.\n아이디는 영어 소문자와 숫자로만 입력가능합니다.");
+//        }
+//    }
 
-    public void checkID(String id) throws Exception{
-        String idPattern = "^[a-z0-9]+$";
-        if(Pattern.matches(idPattern,id)) {
-            System.out.println("올바른 아이디 형식입니다.");
-        } else {
-            throw new Exception("아이디 형식이 잘못되었습니다.\n아이디는 영어 소문자와 숫자로만 입력가능합니다.");
-        }
-    }
 
-    public String inputId() {
-        System.out.print("아이디를 입력해주세요: ");
-        Scanner sc = new Scanner(System.in);
-        String id = sc.nextLine();
-        try {
-            checkID(id);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            inputId();
-        }
-        return id;
-    }
-
-    public String inputPwd() {
-        System.out.print("비밀번호를 입력해주세요: ");
-        Scanner sc = new Scanner(System.in);
-        String pwd = sc.nextLine();
-        try {
-            checkPwd(pwd);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            inputPwd();
-        }
-        return pwd;
-    }
 }

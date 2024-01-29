@@ -56,28 +56,35 @@ public class Application {
         Member newInfo = null;
 
         Scanner sc = new Scanner(System.in);
-//        System.out.print("아이디를 입력하세요: ");
-//        String id = sc.nextLine();
-        String id = mm.inputId();
+        while(true) {
+            System.out.print("아이디를 입력하세요: ");
+            String id = sc.nextLine();
 
-//        System.out.print("패스워드를 입력하세요: ");
-//        String pwd = sc.nextLine();
-        String pwd = mm.inputPwd();
+            System.out.print("패스워드를 입력하세요: ");
+            String pwd = sc.nextLine();
 
+            System.out.print("전화번호를 입력하세요: ");
+            String phoneNum = sc.nextLine();
+
+            System.out.print("주민번호를 입력하세요: ");
+            String personNum = sc.nextLine();
+
+            System.out.print("이메일을 입력하세요: ");
+            String email = sc.nextLine();
+
+            newInfo = new Member(id, pwd, phoneNum, email, personNum);
+            boolean valiThings = mm.validationThings(newInfo);
+            if(valiThings) {
+                break;
+            }
+        }
         System.out.print("이름을 입력하세요: ");
         String name = sc.nextLine();
-
-        System.out.print("전화번호를 입력하세요: ");
-        String phoneNum = sc.nextLine();
-
-        System.out.print("주민번호를 입력하세요: ");
-        String personNum = sc.nextLine();
-
-        System.out.print("이메일을 입력하세요: ");
-        String email = sc.nextLine();
+        newInfo.setName(name);
 
         System.out.print("나이를 입력하세요: ");
         int age = sc.nextInt();
+        newInfo.setAge(age);
 
         System.out.print("입력 할 취미 개수를 입력하세요(숫자로 1 이상): ");
         int length = sc.nextInt();
@@ -89,7 +96,7 @@ public class Application {
             String input = sc.nextLine();
             hobbies[i] = input;
         }
-        newInfo = new Member(id, pwd, name, phoneNum, email, personNum, age, hobbies);
+        newInfo.setHobbies(hobbies);
 
         System.out.print("혈액형을 입력하세요(A, AB, B, O): ");
         String bloodType = sc.nextLine().toUpperCase();
@@ -108,6 +115,7 @@ public class Application {
                 bt = BloodType.O;
                 break;
         }
+
         System.out.print("MBTI를 입력하세요: ");
         String mbti = sc.nextLine().toUpperCase();
         Mbti mt = null;
